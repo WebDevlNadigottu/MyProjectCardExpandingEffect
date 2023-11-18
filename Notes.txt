@@ -1,0 +1,110 @@
+background-size: auto 100%;  total backgourn in x auto and y 100%
+flex: 0.5; -- it is used for perfect width in flex all have same width
+
+coding: index.html:-
+------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Card expanding effects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <h1>FE Project -04</h1>
+    <h2>Test</h2>  Note: For test purpose
+    <h2>Test</h2> -->
+    <div class="container">
+        <div class="panel active" style="background-image: url('images/bg2.jpg');">
+            <h3>Background Two</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg3.jpg');">
+            <h3>Background Three</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg4.jpg');">
+            <h3>Background Four</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg5.jpg');">
+            <h3>Background Five</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg6.jpg');">
+            <h3>Background Six</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg7.webp');">
+            <h3>Background Seven</h3>
+        </div>
+        <div class="panel" style="background-image: url('images/bg8.jpg');">
+            <h3>Background Eight</h3>
+        </div>
+    </div>
+    <script src="script.js"> </script>
+    
+</body>
+</html>
+-------------------------------------------------------------------------------
+coding: style.css:-
+-----------------
+body {
+    font-family: Arial;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    display: flex;
+    width: 90vw;
+    justify-content: center;  /*comes to center horizontally */
+}
+.panel  {
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 80vh;
+    border-radius: 50px;
+    margin: 10px;
+    flex: 0.5;  /*it gives same size to all and it automatically adjusts with width size*/
+    position: relative;
+    cursor: pointer;
+    transition: flex 0.7s ease-in;
+}
+.panel h3 {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    background-color: rgba(255, 255, 255, 0.363);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 1.3vw;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out 0.4s; /*here it 0.4s is transition delay */
+}
+.panel.active {
+    flex: 5; /*here for this active class only the flex size is 5 times*/
+}
+.active h3 {
+    opacity: 1;
+}
+---------------------------------------------------------------------------
+coding: script.js:-
+------------------
+const panels = document.querySelectorAll('.panel')   // const variable we use because value should not be changed.
+// console.log(panels[])  // here we got an array so we use aaray here
+panels.forEach((panel) => {
+    panel.addEventListener('click', () => {
+        // console.log('Working....')
+        // console.log(panel) // here when clicked on the panel that will select.
+        removeActiveClass() // here it is a custom function and we can take any name for it like removeActivePanel()
+        // Note: here removeactiveclass take first means first it checks and removes all active classes then with add class will be worked then whatever we click that is activeted.
+        panel.classList.add('active')
+    })
+})
+function removeActiveClass(){
+    panels.forEach((panel) => {
+        panel.classList.remove('active')
+    })
+}
+===================================================================completed===========================================================
